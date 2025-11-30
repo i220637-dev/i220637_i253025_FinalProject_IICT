@@ -1,0 +1,114 @@
+/* Modern Circular Logo Styles */
+
+.logo-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00BBF9 0%, #0099CC 100%);
+  box-shadow: 0 2px 8px rgba(0, 187, 249, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 187, 249, 0.4);
+}
+
+.logo-circle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Logo with letter/text inside */
+.logo-circle-text {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00BBF9 0%, #0099CC 100%);
+  box-shadow: 0 2px 8px rgba(0, 187, 249, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+}
+
+.logo-circle-text:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 187, 249, 0.4);
+}
+
+/* Different sizes */
+.logo-circle-small {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.logo-circle-medium {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+}
+
+.logo-circle-large {
+  width: 96px;
+  height: 96px;
+  font-size: 42px;
+}
+
+/* Alternative color schemes */
+.logo-circle-purple {
+  background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+  box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+}
+
+.logo-circle-orange {
+  background: linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.logo-circle-green {
+  background: linear-gradient(135deg, #51CF66 0%, #40C057 100%);
+  box-shadow: 0 2px 8px rgba(81, 207, 102, 0.3);
+}
+
+/* Logo with icon inside */
+.logo-circle-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00BBF9 0%, #0099CC 100%);
+  box-shadow: 0 2px 8px rgba(0, 187, 249, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-circle-icon svg {
+  width: 60%;
+  height: 60%;
+  fill: #FFFFFF;
+}
+
+.logo-circle-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 187, 249, 0.4);
+}
+
