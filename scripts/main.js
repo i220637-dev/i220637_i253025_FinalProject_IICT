@@ -741,11 +741,10 @@ function sortProducts() {
         sortedProducts = productsWithData;
     }
     
-    // BUG: Sorting only logs but doesn't actually reorder products in DOM
-    // sortedProducts.forEach(product => {
-    //     productsGrid.appendChild(product.element);
-    // });
-    console.log('Products sorted (but not reordered in DOM)');
+    // Reorder products in DOM
+    sortedProducts.forEach(product => {
+        productsGrid.appendChild(product.element);
+    });
     
     // Log sorting results
     console.log('Products sorted:', {
