@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Search functionality
+    // BUG: Search only works on Enter key - no search button handler
     const searchInputs = document.querySelectorAll('.navbar-search');
     searchInputs.forEach(input => {
         input.addEventListener('keypress', function(e) {
