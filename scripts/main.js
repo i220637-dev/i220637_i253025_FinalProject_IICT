@@ -395,7 +395,8 @@ const productCategories = {
 
 // Filter products on products page
 function filterProducts(category, searchTerm) {
-    const productCards = document.querySelectorAll('.products-grid .product-card');
+    // BUG: Wrong selector - using incorrect class name
+    const productCards = document.querySelectorAll('.product-grid .product-card-wrapper');
     let visibleCount = 0;
     
     productCards.forEach((card, index) => {
