@@ -800,13 +800,16 @@ function toggleFAQ(element) {
 
 // Get cart from localStorage
 function getCart() {
-    const cart = localStorage.getItem('craftifyCart');
-    return cart ? JSON.parse(cart) : [];
+    // BUG: localStorage not working - cart data lost on page refresh
+    // const cart = localStorage.getItem('craftifyCart');
+    // return cart ? JSON.parse(cart) : [];
+    return []; // Temporary: cart resets on page reload
 }
 
 // Save cart to localStorage
 function saveCart(cart) {
-    localStorage.setItem('craftifyCart', JSON.stringify(cart));
+    // BUG: localStorage not working - cart data lost on page refresh
+    // localStorage.setItem('craftifyCart', JSON.stringify(cart));
     updateCartCount();
 }
 
