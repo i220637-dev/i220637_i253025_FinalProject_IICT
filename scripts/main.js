@@ -493,15 +493,15 @@ function applyCategoryFilter() {
 }
 
 // Filter products by price range (simplified - top to bottom, bottom to top)
-// BUG: Price filter not respecting category filter - shows all products
 function applyPriceFilter(priceRange) {
     if (priceRange === 'all') {
         // Reset all price filters - show all category-matched products
         const productCards = document.querySelectorAll('.products-grid .product-card');
         productCards.forEach(card => {
             delete card.dataset.priceFiltered;
-            // BUG: Not checking category match
-            card.style.display = 'flex';
+            // Only show if category filter allows
+            if (card.dataset.categoryMatch === 'true' || !card.dataset.categoryMatch) {
+                card.style.display = 'flex';
             }
         });
         return;
