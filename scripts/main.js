@@ -886,7 +886,7 @@ function loadCartItems() {
                 </div>
                 <h2 class="empty-cart-title">Your cart is empty</h2>
                 <p class="empty-cart-message">Looks like you haven't added any items to your cart yet. Start shopping to fill it up!</p>
-                <a href="products.html" class="btn-yellow empty-cart-button">Browse Products</a>
+                <a href="products.html" class="btn-yellow-large empty-cart-button">Browse Products</a>
             </div>
         `;
         return;

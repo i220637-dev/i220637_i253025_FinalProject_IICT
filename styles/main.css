@@ -2189,8 +2189,6 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 
 .empty-cart-button {
   margin-top: 1rem;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
   text-decoration: none;
   display: inline-block;
 }
