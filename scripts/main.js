@@ -879,7 +879,16 @@ function loadCartItems() {
     if (!cartItemsSection) return;
     
     if (cart.length === 0) {
-        cartItemsSection.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Your cart is empty. <a href="products.html" style="color: #00BBF9;">Continue Shopping</a></p>';
+        cartItemsSection.innerHTML = `
+            <div class="empty-cart-container">
+                <div class="empty-cart-icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </div>
+                <h2 class="empty-cart-title">Your cart is empty</h2>
+                <p class="empty-cart-message">Looks like you haven't added any items to your cart yet. Start shopping to fill it up!</p>
+                <a href="products.html" class="btn-yellow empty-cart-button">Browse Products</a>
+            </div>
+        `;
         return;
     }
     
