@@ -821,7 +821,6 @@ function saveCart(cart) {
 }
 
 // Update cart count in navigation
-// BUG: Cart count not updating when items added - only shows on page load
 function updateCartCount() {
     const cart = getCart();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
