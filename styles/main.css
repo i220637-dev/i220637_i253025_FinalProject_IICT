@@ -91,8 +91,8 @@ body {
 */
 
 .btn-buy-now {
-  background-color: #00BBF9;
-  color: #ffffff;
+  background-color: #FFB700;
+  color: #1a1a1a;
   border: none;
   padding: 0.5rem 1.25rem;
   border-radius: 4px;
@@ -104,7 +104,7 @@ body {
 }
 
 .btn-buy-now:hover {
-  background-color: #40C057;
+  background-color: #FFC933;
   transform: translateY(-1px);
 }
 
@@ -362,7 +362,7 @@ body {
   justify-content: space-around;
   width: 44px;
   height: 44px;
-  background-color: #00BBF9;
+  background-color: #FFB700;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -374,8 +374,12 @@ body {
 }
 
 .hamburger-menu:hover {
-  background-color: #40C057;
+  background-color: #00BBF9;
   transform: scale(1.05);
+}
+
+.hamburger-menu:hover span {
+  background-color: #1a1a1a;
 }
 
 .hamburger-menu span {
@@ -1902,8 +1906,9 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 .quantity-btn {
   width: 40px;
   height: 40px;
-  border: 2px solid #e0e0e0;
-  background-color: #ffffff;
+  border: 2px solid #FFB700;
+  background-color: #FFB700;
+  color: #1a1a1a;
   border-radius: 6px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -1912,8 +1917,8 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 }
 
 .quantity-btn:hover {
-  border-color: #00BBF9;
-  background-color: #f0f9ff;
+  border-color: #FFC933;
+  background-color: #FFC933;
 }
 
 .quantity-input {
@@ -2290,8 +2295,9 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 .quantity-btn-small {
   width: 32px;
   height: 32px;
-  border: 2px solid #e0e0e0;
-  background-color: #ffffff;
+  border: 2px solid #FFB700;
+  background-color: #FFB700;
+  color: #1a1a1a;
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 700;
@@ -2300,8 +2306,8 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 }
 
 .quantity-btn-small:hover {
-  border-color: #00BBF9;
-  background-color: #f0f9ff;
+  border-color: #FFC933;
+  background-color: #FFC933;
 }
 
 .quantity-input-small {
@@ -2338,10 +2344,10 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
   width: 32px;
   height: 32px;
   border: none;
-  background-color: #f0f0f0;
+  background-color: #FFB700;
   border-radius: 50%;
   font-size: 1.5rem;
-  color: #dc3545;
+  color: #1a1a1a;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -2350,26 +2356,28 @@ table.responsive { width: 100%; display: block; overflow-x: auto; }
 }
 
 .remove-btn:hover {
-  background-color: #dc3545;
-  color: #ffffff;
+  background-color: #FFC933;
+  color: #1a1a1a;
 }
 
 .save-later-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid #e0e0e0;
-  background-color: #ffffff;
+  border: 2px solid #FFB700;
+  background-color: #FFB700;
   border-radius: 6px;
   font-family: 'Inter', 'Roboto', sans-serif;
   font-size: 0.85rem;
-  color: #666666;
+  color: #1a1a1a;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .save-later-btn:hover {
-  border-color: #00BBF9;
-  color: #00BBF9;
+  border-color: #FFC933;
+  background-color: #FFC933;
+  color: #1a1a1a;
 }
 
 .cart-summary-section {
