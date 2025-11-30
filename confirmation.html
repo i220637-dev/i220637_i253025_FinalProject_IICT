@@ -90,15 +90,29 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="confirmation-container">
-            <div class="confirmation-header">
-                <div class="confirmation-icon">
-                    <span class="material-symbols-outlined" style="font-size: 64px; color: #4CAF50;">check_circle</span>
+            <!-- This will be populated by JavaScript -->
+            <div id="noOrderMessage" class="no-order-message" style="display: none;">
+                <div class="no-order-icon">
+                    <span class="material-symbols-outlined" style="font-size: 64px; color: #FF9800;">shopping_cart</span>
                 </div>
-                <h1 class="confirmation-title">Order Confirmed!</h1>
-                <p class="confirmation-message">Thank you for your purchase. Your order has been received and is being processed.</p>
+                <h1 class="no-order-title">No Order to Confirm</h1>
+                <p class="no-order-text">You don't have any items in your order. Please add items to your cart and complete checkout to see your order confirmation.</p>
+                <div class="no-order-actions">
+                    <a href="products.html" class="btn-yellow">Browse Products</a>
+                    <a href="shopping-cart.html" class="btn-outline">View Cart</a>
+                </div>
             </div>
 
-            <div class="confirmation-details">
+            <div id="confirmationContent" class="confirmation-content" style="display: none;">
+                <div class="confirmation-header">
+                    <div class="confirmation-icon">
+                        <span class="material-symbols-outlined" style="font-size: 64px; color: #4CAF50;">check_circle</span>
+                    </div>
+                    <h1 class="confirmation-title">Order Confirmed!</h1>
+                    <p class="confirmation-message">Thank you for your purchase. Your order has been received and is being processed.</p>
+                </div>
+
+                <div class="confirmation-details">
                 <div class="confirmation-section">
                     <h2 class="section-title">Order Information</h2>
                     <div class="detail-row">
@@ -147,9 +161,10 @@
                     </div>
                 </div>
 
-                <div class="confirmation-actions">
-                    <a href="products.html" class="btn-yellow">Continue Shopping</a>
-                    <a href="user.html" class="btn-outline">View Order History</a>
+                    <div class="confirmation-actions">
+                        <a href="products.html" class="btn-yellow">Continue Shopping</a>
+                        <a href="user.html" class="btn-outline">View Order History</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,6 +340,36 @@
         .btn-outline:hover {
             background: #2c2c2c;
             color: white;
+        }
+
+        .no-order-message {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .no-order-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .no-order-title {
+            font-size: 2rem;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .no-order-text {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .no-order-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
         }
 
         @media (max-width: 768px) {

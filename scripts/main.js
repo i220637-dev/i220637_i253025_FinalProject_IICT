@@ -951,16 +951,6 @@ function removeCartItemById(productId) {
 
 // Load confirmation page details
 function loadConfirmationDetails() {
-    // Generate order number
-    const orderNumber = 'ORD-' + Date.now().toString().slice(-8);
-    const orderDate = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-
     // Get order data from localStorage or URL params
     const urlParams = new URLSearchParams(window.location.search);
     const orderData = urlParams.get('orderData');
@@ -982,6 +972,31 @@ function loadConfirmationDetails() {
         // Fallback to localStorage cart
         cart = getCart();
     }
+
+    // Check if there's actually an order
+    const noOrderMessage = document.getElementById('noOrderMessage');
+    const confirmationContent = document.getElementById('confirmationContent');
+
+    if (!cart || cart.length === 0) {
+        // No order - show "nothing to ship" message
+        if (noOrderMessage) noOrderMessage.style.display = 'block';
+        if (confirmationContent) confirmationContent.style.display = 'none';
+        return; // Exit early - don't process order details
+    }
+
+    // There is an order - show confirmation details
+    if (noOrderMessage) noOrderMessage.style.display = 'none';
+    if (confirmationContent) confirmationContent.style.display = 'block';
+
+    // Generate order number
+    const orderNumber = 'ORD-' + Date.now().toString().slice(-8);
+    const orderDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 
     // Update order number and date
     const orderNumberEl = document.getElementById('orderNumber');
@@ -1012,19 +1027,15 @@ function loadConfirmationDetails() {
     // Display order items
     const itemsContainer = document.getElementById('orderItemsContainer');
     if (itemsContainer) {
-        if (cart.length === 0) {
-            itemsContainer.innerHTML = '<p>No items in this order.</p>';
-        } else {
-            itemsContainer.innerHTML = cart.map(item => `
-                <div class="order-item">
-                    <div class="item-info">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-details">Quantity: ${item.quantity} × $${item.price.toFixed(2)}</div>
-                    </div>
-                    <div class="item-total">$${(item.price * item.quantity).toFixed(2)}</div>
+        itemsContainer.innerHTML = cart.map(item => `
+            <div class="order-item">
+                <div class="item-info">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-details">Quantity: ${item.quantity} × $${item.price.toFixed(2)}</div>
                 </div>
-            `).join('');
-        }
+                <div class="item-total">$${(item.price * item.quantity).toFixed(2)}</div>
+            </div>
+        `).join('');
     }
 
     // Display shipping information
@@ -1043,7 +1054,7 @@ function loadConfirmationDetails() {
         }
     }
 
-    // Clear cart after displaying confirmation
+    // Clear cart after displaying confirmation (only if there was an actual order)
     saveCart([]);
     updateCartCount();
 }
