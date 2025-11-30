@@ -89,8 +89,261 @@
     
     <!-- Main Content -->
     <main class="main-content">
-        <h1>Confirmation Page</h1>
+        <div class="confirmation-container">
+            <div class="confirmation-header">
+                <div class="confirmation-icon">
+                    <span class="material-symbols-outlined" style="font-size: 64px; color: #4CAF50;">check_circle</span>
+                </div>
+                <h1 class="confirmation-title">Order Confirmed!</h1>
+                <p class="confirmation-message">Thank you for your purchase. Your order has been received and is being processed.</p>
+            </div>
+
+            <div class="confirmation-details">
+                <div class="confirmation-section">
+                    <h2 class="section-title">Order Information</h2>
+                    <div class="detail-row">
+                        <span class="detail-label">Order Number:</span>
+                        <span class="detail-value" id="orderNumber">#ORD-000000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Order Date:</span>
+                        <span class="detail-value" id="orderDate">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Order Status:</span>
+                        <span class="detail-value status-confirmed">Confirmed</span>
+                    </div>
+                </div>
+
+                <div class="confirmation-section">
+                    <h2 class="section-title">Order Summary</h2>
+                    <div id="orderItemsContainer" class="order-items-list">
+                        <!-- Order items will be loaded dynamically -->
+                    </div>
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span class="total-label">Subtotal:</span>
+                            <span class="total-value" id="confirmationSubtotal">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span class="total-label">Tax (5%):</span>
+                            <span class="total-value" id="confirmationTax">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span class="total-label">Shipping:</span>
+                            <span class="total-value" id="confirmationShipping">$5.00</span>
+                        </div>
+                        <div class="total-row total-final">
+                            <span class="total-label">Total:</span>
+                            <span class="total-value" id="confirmationTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirmation-section">
+                    <h2 class="section-title">Shipping Information</h2>
+                    <div id="shippingInfo" class="shipping-details">
+                        <!-- Shipping info will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <a href="products.html" class="btn-yellow">Continue Shopping</a>
+                    <a href="user.html" class="btn-outline">View Order History</a>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <style>
+        .confirmation-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .confirmation-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .confirmation-icon {
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            font-size: 2rem;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .confirmation-message {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .confirmation-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .confirmation-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .detail-value {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .status-confirmed {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .order-items-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .item-total {
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .order-totals {
+            border-top: 2px solid #e0e0e0;
+            padding-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+        }
+
+        .total-label {
+            color: #666;
+        }
+
+        .total-value {
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .total-final {
+            font-size: 1.2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 0.5rem;
+        }
+
+        .total-final .total-label,
+        .total-final .total-value {
+            font-size: 1.2rem;
+            color: #2c2c2c;
+        }
+
+        .shipping-details {
+            line-height: 1.8;
+            color: #2c2c2c;
+        }
+
+        .confirmation-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-outline {
+            padding: 0.75rem 2rem;
+            border: 2px solid #2c2c2c;
+            background: transparent;
+            color: #2c2c2c;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #2c2c2c;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .confirmation-actions {
+                flex-direction: column;
+            }
+
+            .btn-outline,
+            .btn-yellow {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 
     <!-- Footer -->
     <footer class="footer">

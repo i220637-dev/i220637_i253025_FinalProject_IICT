@@ -949,6 +949,105 @@ function removeCartItemById(productId) {
     }
 }
 
+// Load confirmation page details
+function loadConfirmationDetails() {
+    // Generate order number
+    const orderNumber = 'ORD-' + Date.now().toString().slice(-8);
+    const orderDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    // Get order data from localStorage or URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderData = urlParams.get('orderData');
+    
+    let cart = [];
+    let shippingInfo = {};
+
+    if (orderData) {
+        try {
+            const parsed = JSON.parse(decodeURIComponent(orderData));
+            cart = parsed.cart || [];
+            shippingInfo = parsed.shipping || {};
+        } catch (e) {
+            console.error('Error parsing order data:', e);
+            // Fallback to localStorage cart
+            cart = getCart();
+        }
+    } else {
+        // Fallback to localStorage cart
+        cart = getCart();
+    }
+
+    // Update order number and date
+    const orderNumberEl = document.getElementById('orderNumber');
+    const orderDateEl = document.getElementById('orderDate');
+    if (orderNumberEl) orderNumberEl.textContent = '#' + orderNumber;
+    if (orderDateEl) orderDateEl.textContent = orderDate;
+
+    // Calculate totals
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal += item.price * item.quantity;
+    });
+    const tax = subtotal * 0.05;
+    const shipping = 5.00;
+    const total = subtotal + tax + shipping;
+
+    // Update totals
+    const subtotalEl = document.getElementById('confirmationSubtotal');
+    const taxEl = document.getElementById('confirmationTax');
+    const shippingEl = document.getElementById('confirmationShipping');
+    const totalEl = document.getElementById('confirmationTotal');
+
+    if (subtotalEl) subtotalEl.textContent = '$' + subtotal.toFixed(2);
+    if (taxEl) taxEl.textContent = '$' + tax.toFixed(2);
+    if (shippingEl) shippingEl.textContent = '$' + shipping.toFixed(2);
+    if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+
+    // Display order items
+    const itemsContainer = document.getElementById('orderItemsContainer');
+    if (itemsContainer) {
+        if (cart.length === 0) {
+            itemsContainer.innerHTML = '<p>No items in this order.</p>';
+        } else {
+            itemsContainer.innerHTML = cart.map(item => `
+                <div class="order-item">
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-details">Quantity: ${item.quantity} × $${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="item-total">$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Display shipping information
+    const shippingInfoEl = document.getElementById('shippingInfo');
+    if (shippingInfoEl) {
+        if (Object.keys(shippingInfo).length > 0) {
+            shippingInfoEl.innerHTML = `
+                <p><strong>${shippingInfo.name || 'N/A'}</strong></p>
+                <p>${shippingInfo.address || 'N/A'}</p>
+                <p>${shippingInfo.city || ''}, ${shippingInfo.state || ''} ${shippingInfo.zip || ''}</p>
+                <p>${shippingInfo.country || 'N/A'}</p>
+                ${shippingInfo.phone ? `<p>Phone: ${shippingInfo.phone}</p>` : ''}
+            `;
+        } else {
+            shippingInfoEl.innerHTML = '<p>Shipping information will be sent via email.</p>';
+        }
+    }
+
+    // Clear cart after displaying confirmation
+    saveCart([]);
+    updateCartCount();
+}
+
 // Initialize cart on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
@@ -956,5 +1055,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load cart items if on cart page
     if (window.location.pathname.includes('shopping-cart.html')) {
         loadCartItems();
+    }
+    
+    // Load confirmation details if on confirmation page
+    if (window.location.pathname.includes('confirmation.html')) {
+        loadConfirmationDetails();
+    }
+    
+    // Handle place order button on checkout page
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+    if (placeOrderBtn) {
+        placeOrderBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const shippingName = document.getElementById('fullName')?.value || '';
+            const shippingAddress = document.getElementById('address')?.value || '';
+            const shippingCity = document.getElementById('city')?.value || '';
+            const shippingState = document.getElementById('state')?.value || '';
+            const shippingZip = document.getElementById('zipCode')?.value || '';
+            const shippingCountry = document.getElementById('country')?.value || '';
+            const shippingPhone = document.getElementById('phone')?.value || '';
+            
+            const shippingInfo = {
+                name: shippingName,
+                address: shippingAddress,
+                city: shippingCity,
+                state: shippingState,
+                zip: shippingZip,
+                country: shippingCountry,
+                phone: shippingPhone
+            };
+            
+            // Get cart
+            const cart = getCart();
+            
+            // Create order data
+            const orderData = {
+                cart: cart,
+                shipping: shippingInfo,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Navigate to confirmation page with order data
+            const orderDataString = encodeURIComponent(JSON.stringify(orderData));
+            window.location.href = `confirmation.html?orderData=${orderDataString}`;
+        });
     }
 });
