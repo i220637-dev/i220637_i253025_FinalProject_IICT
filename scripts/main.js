@@ -106,12 +106,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 let isValid = true;
                 inputs.forEach(input => {
-                    // BUG: Email validation missing - accepts invalid email formats
                     if (input.hasAttribute('required') && !input.value.trim()) {
                         isValid = false;
                         input.style.borderColor = '#EA4335';
                     } else {
                         input.style.borderColor = '#D9D9D9';
+                    }
+                    
+                    // Email validation
+                    if (input.type === 'email' && input.value.trim()) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(input.value.trim())) {
+                            isValid = false;
+                            input.style.borderColor = '#EA4335';
+                        }
                     }
                 });
                 
