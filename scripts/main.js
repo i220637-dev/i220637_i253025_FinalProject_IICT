@@ -225,8 +225,8 @@ function updateCartTotal() {
         }
     });
     
-    // BUG: Tax calculation incorrect - using wrong percentage
-    const tax = subtotal * 0.10; // Wrong: should be 5%
+    // Calculate tax (5%)
+    const tax = subtotal * 0.05;
     const shipping = 5.00;
     const total = subtotal + tax + shipping;
     
